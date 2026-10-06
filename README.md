@@ -23,6 +23,19 @@ npm run build    # production build into dist/
 npm run preview  # serve the production build
 ```
 
+## Hosting
+
+The site is hosted on GitHub Pages under the custom domain **salon-nonchalant.de** (registered at Strato).
+Every push to `main` builds and deploys it automatically (`.github/workflows/deploy.yml`).
+
+DNS records at Strato (Domainverwaltung → DNS):
+
+| Type  | Name | Value |
+|-------|------|-------|
+| A     | @    | 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 |
+| AAAA  | @    | 2606:50c0:8000::153, 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153 |
+| CNAME | www  | lucakucznierz.github.io |
+
 ## Photos
 
 The high-resolution originals live in `/Photos`. That folder is ignored by git because it is too large (~650 MB).
