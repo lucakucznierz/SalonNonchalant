@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { t, LANGUAGE_SWITCH } from '../i18n'
+import { t, LANG, LANGUAGES } from '../i18n'
 
 defineProps({ solid: Boolean })
 
@@ -43,13 +43,19 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
       </button>
       <nav id="main-nav" class="header__nav" :class="{ 'header__nav--open': menuOpen }">
         <a v-for="link in LINKS" :key="link.href" :href="link.href" @click="menuOpen = false">{{ link.label }}</a>
-        <a
-          class="header__lang"
-          :href="LANGUAGE_SWITCH.href"
-          :hreflang="LANGUAGE_SWITCH.hreflang"
-          :lang="LANGUAGE_SWITCH.hreflang"
-          :title="LANGUAGE_SWITCH.title"
-        >{{ LANGUAGE_SWITCH.label }}</a>
+        <span class="header__langs">
+          <a
+            v-for="language in LANGUAGES"
+            :key="language.code"
+            class="header__lang"
+            :class="{ 'header__lang--current': language.code === LANG }"
+            :href="language.href"
+            :hreflang="language.code"
+            :lang="language.code"
+            :title="language.title"
+            :aria-current="language.code === LANG ? 'page' : null"
+          >{{ language.label }}</a>
+        </span>
       </nav>
     </div>
   </header>
@@ -84,6 +90,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
 }
 .header__nav {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 .header__nav a {
@@ -96,12 +103,20 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
 .header__nav a:hover {
   color: var(--gold);
 }
-.header__nav .header__lang {
-  padding: 0.1rem 0.55rem;
+.header__langs {
+  display: flex;
   border: 1px solid var(--gold);
   border-radius: 999px;
+  overflow: hidden;
+}
+.header__nav .header__lang {
+  padding: 0.15rem 0.6rem;
   color: var(--gold);
   font-size: 0.8rem;
+}
+.header__nav .header__lang--current {
+  background: var(--gold);
+  color: #1a1206;
 }
 .header__toggle {
   display: none;
@@ -129,6 +144,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
     left: 0;
     right: 0;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
@@ -140,11 +156,13 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
     padding: 1rem 24px;
     border-top: 1px solid var(--line);
   }
-  .header__nav .header__lang {
+  .header__langs {
     align-self: flex-start;
     margin: 1rem 24px;
-    padding: 0.3rem 0.9rem;
-    border-top-color: var(--gold);
+  }
+  .header__nav .header__lang {
+    padding: 0.4rem 1rem;
+    border-top: 0;
   }
 }
 </style>

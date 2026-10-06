@@ -7,8 +7,12 @@ Website of the big band Salon Nonchalant. Built with [Vue 3](https://vuejs.org/)
 
 ## Languages and SEO
 
-- German lives at `/` (`index.html`), English at `/en/` (`en/index.html`). Both pages load the same app;
-  `src/i18n.js` reads `<html lang>` and holds the fixed interface texts. Sheet columns ending in `_EN` hold English content.
+- German lives at `/` (`index.html`), English at `/en/` (`en/index.html`), French at `/fr/` (`fr/index.html`).
+  All pages load the same app; `src/i18n.js` reads `<html lang>` and holds the fixed interface texts.
+  Sheet columns ending in `_EN` / `_FR` hold translated content. Missing French falls back to English, then German;
+  missing English falls back to German.
+- Adding a language: a new `<lang>/index.html`, an entry in `LANGUAGES`, `STRINGS` and `FALLBACK_ORDER` in `src/i18n.js`,
+  a locale in `src/utils/dates.js`, gallery captions in `src/gallery.js`, the Vite `input` list and `public/sitemap.xml`.
 - Each page has its own title, description, canonical URL, `hreflang` links, Open Graph tags and
   schema.org `MusicGroup` data located in Leipzig. A static text block inside `#app` is readable without JavaScript.
 - Upcoming concerts are published as schema.org `MusicEvent` data at runtime (`src/services/structuredData.js`),

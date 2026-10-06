@@ -5,11 +5,16 @@ Wer die Tabelle bearbeiten darf, kann die Website ändern. Programmierkenntnisse
 
 Änderungen erscheinen **sofort**, sobald jemand die Website neu lädt. Speichern ist nicht nötig, Google speichert automatisch.
 
-## Deutsch und Englisch
+## Deutsch, Englisch und Französisch
 
-Die Website gibt es auf Deutsch (salon-nonchalant.de) und auf Englisch (salon-nonchalant.de/en/).
-Spalten, deren Name auf **_EN** endet, enthalten die englische Fassung, z. B. `Titel_EN` oder `Inhalt_EN`.
-Bleibt eine _EN-Zelle leer, zeigt die englische Seite einfach den deutschen Text.
+Die Website gibt es auf Deutsch (salon-nonchalant.de), Englisch (salon-nonchalant.de/en/)
+und Französisch (salon-nonchalant.de/fr/).
+Spalten, deren Name auf **_EN** oder **_FR** endet, enthalten die englische bzw. französische Fassung,
+z. B. `Titel_EN`, `Titel_FR` oder `Inhalt_FR`. Fehlt eine Spalte, kann man sie einfach rechts anfügen.
+
+Bleibt eine Übersetzung leer, springt die Website ein:
+- Englische Seite: zeigt den deutschen Text.
+- Französische Seite: zeigt den englischen Text, und wenn der auch fehlt, den deutschen.
 
 ---
 

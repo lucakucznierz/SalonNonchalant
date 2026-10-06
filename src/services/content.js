@@ -2,7 +2,7 @@ import { reactive } from 'vue'
 import Papa from 'papaparse'
 import { SHEET_ID, TABS } from '../config'
 import { parseDate, formatTime, startOfToday } from '../utils/dates'
-import { localized } from '../i18n'
+import { localizedColumn } from '../i18n'
 
 // Per table: bundled example file, a column that must exist, and whether the example file
 // may stand in for a broken sheet tab (never for members, so no fake people appear on the live site).
@@ -73,7 +73,7 @@ function toTexts(rows)
   {
     const field = clean(row.Feld)
     if(field)
-      texts[field] = localized(clean(row.Inhalt), clean(row.Inhalt_EN))
+      texts[field] = localizedColumn(row, 'Inhalt')
   }
   return texts
 }
@@ -84,11 +84,11 @@ function toConcerts(rows)
     .map(row => ({
       date: parseDate(row.Datum),
       time: formatTime(row.Uhrzeit),
-      title: localized(clean(row.Titel), clean(row.Titel_EN)),
+      title: localizedColumn(row, 'Titel'),
       venue: clean(row.Ort),
       address: clean(row.Adresse),
       link: clean(row.Link),
-      info: localized(clean(row.Info), clean(row.Info_EN))
+      info: localizedColumn(row, 'Info')
     }))
     .filter(concert => concert.date)
 }
@@ -99,8 +99,8 @@ function toMembers(rows)
     .map(row => ({
       section: clean(row.Register),
       name: clean(row.Name),
-      instrument: localized(clean(row.Instrument), clean(row.Instrument_EN)),
-      info: localized(clean(row.Info), clean(row.Info_EN)),
+      instrument: localizedColumn(row, 'Instrument'),
+      info: localizedColumn(row, 'Info'),
       photo: clean(row.Foto)
     }))
     .filter(member => member.name)
@@ -116,8 +116,8 @@ function toLineup(rows, memberRows)
       const key = clean(row.Register)
       return {
         key,
-        section: localized(key, clean(row.Register_EN)),
-        instruments: localized(clean(row.Instrumente), clean(row.Instrumente_EN)),
+        section: localizedColumn(row, 'Register'),
+        instruments: localizedColumn(row, 'Instrumente'),
         photo: clean(row.Foto),
         members: members.filter(member => member.section.toLowerCase() === key.toLowerCase())
       }

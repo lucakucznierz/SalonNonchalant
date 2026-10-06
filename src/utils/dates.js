@@ -1,6 +1,7 @@
 import { LANG } from '../i18n'
 
-const LOCALE = LANG === 'en' ? 'en-GB' : 'de-DE'
+const LOCALES = { de: 'de-DE', en: 'en-GB', fr: 'fr-FR' }
+const LOCALE = LOCALES[LANG]
 
 function buildDate(year, month, day)
 {

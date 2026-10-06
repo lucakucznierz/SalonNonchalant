@@ -1,6 +1,6 @@
-Register,Register_EN,Instrumente,Instrumente_EN,Foto
-Saxophone,Saxophones,"Alt-, Tenor- und Baritonsaxophon","Alto, tenor and baritone saxophone",img-6675
-Trompeten,Trumpets,Trompeten und Flügelhorn,Trumpets and flugelhorn,img-6672
-Posaunen,Trombones,Tenor- und Bassposaune,Tenor and bass trombone,img-6644
-Rhythmusgruppe,Rhythm section,"Klavier, Gitarre, Kontrabass und Schlagzeug","Piano, guitar, double bass and drums",mg-6418
-Streicher,Strings,Violinen,Violins,mg-6430
+Register,Register_EN,Register_FR,Instrumente,Instrumente_EN,Instrumente_FR,Foto
+Saxophone,Saxophones,Saxophones,"Alt-, Tenor- und Baritonsaxophon","Alto, tenor and baritone saxophone","Saxophones alto, ténor et baryton",img-6675
+Trompeten,Trumpets,Trompettes,Trompeten und Flügelhorn,Trumpets and flugelhorn,Trompettes et bugle,img-6672
+Posaunen,Trombones,Trombones,Tenor- und Bassposaune,Tenor and bass trombone,Trombone ténor et trombone basse,img-6644
+Rhythmusgruppe,Rhythm section,Section rythmique,"Klavier, Gitarre, Kontrabass und Schlagzeug","Piano, guitar, double bass and drums","Piano, guitare, contrebasse et batterie",mg-6418
+Streicher,Strings,Cordes,Violinen,Violins,Violons,mg-6430

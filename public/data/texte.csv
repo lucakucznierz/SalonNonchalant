@@ -1,33 +1,37 @@
-Feld,Inhalt,Inhalt_EN
-slogan,"Swing, Jazz und Salonmusik aus Leipzig – mit Stil und ganz entspannt.","Swing, jazz and salon music from Leipzig – stylish and perfectly relaxed."
-hero_zeile,Bigband aus Leipzig · Live · Tanzbar,Big band from Leipzig · Live · Danceable
-ueber_titel,Eine Leipziger Bigband mit Salonflair,A Leipzig big band with salon flair
+Feld,Inhalt,Inhalt_EN,Inhalt_FR
+slogan,"Swing, Jazz und Salonmusik aus Leipzig – mit Stil und ganz entspannt.","Swing, jazz and salon music from Leipzig – stylish and perfectly relaxed.","Swing, jazz et musique de salon de Leipzig – avec style et en toute décontraction."
+hero_zeile,Bigband aus Leipzig · Live · Tanzbar,Big band from Leipzig · Live · Danceable,Big band de Leipzig · Live · Dansant
+ueber_titel,Eine Leipziger Bigband mit Salonflair,A Leipzig big band with salon flair,Un big band leipzigois à l'esprit salon
 ueber_text,"Salon Nonchalant ist eine Bigband aus Leipzig und bringt den Glanz der Tanzsäle zurück auf die Bühne: Saxophone, Blech, Rhythmusgruppe und Streicher spielen Swing, Jazz und Salonmusik – elegant, verspielt und immer ein bisschen nonchalant.
 Dieser Text ist ein Platzhalter. Erzählt hier, wer ihr seid, wie die Band entstanden ist und was ein Abend mit euch so besonders macht.","Salon Nonchalant is a big band from Leipzig, Germany, bringing the glamour of the old ballrooms back to the stage: saxophones, brass, rhythm section and strings play swing, jazz and salon music – elegant, playful and always a little nonchalant.
-This text is a placeholder. Tell visitors who you are, how the band started and what makes an evening with you special."
-fakt1_zahl,20+,20+
-fakt1_text,Musikerinnen und Musiker,musicians
-fakt2_zahl,5,5
-fakt2_text,Register auf der Bühne,sections on stage
-fakt3_zahl,100 %,100 %
-fakt3_text,live gespielt,played live
-buchen_titel,Salon Nonchalant buchen,Book Salon Nonchalant
-buchen_text,"Ob Ball, Hochzeit, Gala, Firmenfeier oder Stadtfest – in Leipzig und Umgebung bringen wir Swing in jeden Saal. Schreibt uns, wir melden uns schnell zurück.","Whether it's a ball, wedding, gala, corporate event or city festival – in and around Leipzig we bring swing to every venue. Drop us a line and we'll get back to you soon."
-email,kontakt@beispiel.de,
-telefon,,
-instagram,,
-facebook,,
-youtube,,
+This text is a placeholder. Tell visitors who you are, how the band started and what makes an evening with you special.","Salon Nonchalant est un big band de Leipzig, en Allemagne, qui ramène sur scène l'éclat des grandes salles de bal : saxophones, cuivres, section rythmique et cordes jouent du swing, du jazz et de la musique de salon – avec élégance, espièglerie et toujours un brin de nonchalance.
+Ce texte est un exemple. Racontez ici qui vous êtes, comment le groupe est né et ce qui rend une soirée avec vous si particulière."
+fakt1_zahl,20+,20+,20+
+fakt1_text,Musikerinnen und Musiker,musicians,musiciennes et musiciens
+fakt2_zahl,5,5,5
+fakt2_text,Register auf der Bühne,sections on stage,sections sur scène
+fakt3_zahl,100 %,100 %,100 %
+fakt3_text,live gespielt,played live,joué en live
+buchen_titel,Salon Nonchalant buchen,Book Salon Nonchalant,Réserver Salon Nonchalant
+buchen_text,"Ob Ball, Hochzeit, Gala, Firmenfeier oder Stadtfest – in Leipzig und Umgebung bringen wir Swing in jeden Saal. Schreibt uns, wir melden uns schnell zurück.","Whether it's a ball, wedding, gala, corporate event or city festival – in and around Leipzig we bring swing to every venue. Drop us a line and we'll get back to you soon.","Bal, mariage, gala, événement d'entreprise ou fête de quartier – à Leipzig et dans les environs, nous apportons le swing dans chaque salle. Écrivez-nous, nous vous répondrons rapidement."
+email,kontakt@beispiel.de,,
+telefon,,,
+instagram,,,
+facebook,,,
+youtube,,,
 impressum,"Angaben gemäß § 5 DDG
 Name und Anschrift der verantwortlichen Person
 Musterstraße 1
 04109 Leipzig
 E-Mail: kontakt@beispiel.de
-(Platzhalter – bitte vollständig ausfüllen)",
+(Platzhalter – bitte vollständig ausfüllen)",,
 datenschutz,"Diese Website speichert keine Cookies und verwendet keine Analyse-Tools.
 Termine und Texte werden aus einer Google-Tabelle geladen. Dabei wird Ihre IP-Adresse an Google übermittelt (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einfach pflegbaren Website).
 Verantwortlich: siehe Impressum.
 (Platzhalter – bitte rechtlich prüfen lassen)","This website does not store cookies and does not use analytics tools.
 Dates and texts are loaded from a Google spreadsheet. In the process, your IP address is transmitted to Google (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland). The legal basis is Art. 6 (1) (f) GDPR (legitimate interest in an easily maintainable website).
 Controller: see legal notice.
-(Placeholder – please have this reviewed)"
+(Placeholder – please have this reviewed)","Ce site n'enregistre pas de cookies et n'utilise aucun outil d'analyse.
+Les dates et les textes sont chargés depuis un tableur Google. Votre adresse IP est alors transmise à Google (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irlande). La base juridique est l'article 6, paragraphe 1, point f du RGPD (intérêt légitime à un site facile à mettre à jour).
+Responsable : voir les mentions légales.
+(Exemple – à faire vérifier juridiquement)"

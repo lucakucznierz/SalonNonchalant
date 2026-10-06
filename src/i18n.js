@@ -1,10 +1,17 @@
-// The site exists as two pages: "/" (German) and "/en/" (English).
+// The site exists as one page per language: "/" (German), "/en/" (English) and "/fr/" (French).
 // The language is taken from <html lang> of the page that was loaded.
-export const LANG = document.documentElement.lang === 'en' ? 'en' : 'de'
+export const LANGUAGES = [
+  { code: 'de', href: '/', label: 'DE', title: 'Deutsch' },
+  { code: 'en', href: '/en/', label: 'EN', title: 'English' },
+  { code: 'fr', href: '/fr/', label: 'FR', title: 'Français' }
+]
 
-export const LANGUAGE_SWITCH = LANG === 'en'
-  ? { href: '/', label: 'DE', hreflang: 'de', title: 'Deutsche Version' }
-  : { href: '/en/', label: 'EN', hreflang: 'en', title: 'English version' }
+const PAGE_LANG = document.documentElement.lang
+export const LANG = LANGUAGES.some(language => language.code === PAGE_LANG) ? PAGE_LANG : 'de'
+
+// Order in which translations are tried when a text is missing in the current language.
+// French falls back to English first, as French visitors are more likely to read English than German.
+const FALLBACK_ORDER = { de: ['de'], en: ['en', 'de'], fr: ['fr', 'en', 'de'] }
 
 const STRINGS = {
   de: {
@@ -90,6 +97,48 @@ const STRINGS = {
     impressum: 'Legal notice',
     datenschutz: 'Privacy policy',
     backHome: '← Back to the homepage'
+  },
+  fr: {
+    navBand: 'Groupe',
+    navConcerts: 'Concerts',
+    navGallery: 'Galerie',
+    navBooking: 'Réservation',
+    openMenu: 'Ouvrir le menu',
+    heroFallback: 'Big band de Leipzig',
+    heroAlt: 'Le big band leipzigois Salon Nonchalant dans une salle de cinéma',
+    upcomingConcerts: 'Prochains concerts',
+    bookBand: 'Réserver le groupe',
+    nextShow: 'Prochain concert',
+    bandEyebrow: 'Le groupe',
+    aboutFallback: 'À propos',
+    aboutAlt: 'La section de cuivres de Salon Nonchalant',
+    lineup: 'Formation',
+    showMembers: 'Musiciens',
+    membersComingSoon: 'Nos musiciennes et musiciens se présenteront bientôt ici.',
+    concertsEyebrow: 'En concert',
+    concerts: 'Concerts',
+    concertFallback: 'Concert',
+    loadingConcerts: 'Chargement des dates …',
+    noConcerts: 'Aucune date n\'est prévue pour le moment. Revenez bientôt ou',
+    noConcertsLink: 'réservez-nous pour votre événement',
+    timeSuffix: '',
+    moreInfo: 'Plus d\'infos',
+    showPast: 'Afficher les concerts passés',
+    hidePast: 'Masquer les concerts passés',
+    galleryEyebrow: 'Impressions',
+    gallery: 'Galerie',
+    showAllPhotos: 'Afficher toutes les photos',
+    showFewerPhotos: 'Afficher moins',
+    enlargePhoto: 'Agrandir la photo',
+    photoView: 'Vue photo',
+    close: 'Fermer',
+    previousPhoto: 'Photo précédente',
+    nextPhoto: 'Photo suivante',
+    contactEyebrow: 'Réservation & contact',
+    contactFallback: 'Contact',
+    impressum: 'Mentions légales',
+    datenschutz: 'Politique de confidentialité',
+    backHome: '← Retour à l\'accueil'
   }
 }
 
@@ -99,8 +148,20 @@ export function t(key)
   return STRINGS[LANG][key] ?? STRINGS.de[key] ?? key
 }
 
-/// Picks the English value when the page is English and one exists, otherwise the German value.
-export function localized(german, english)
+/// Picks the best available translation from an object like { de: '…', en: '…', fr: '…' }.
+export function localized(values)
 {
-  return (LANG === 'en' && english) ? english : german
+  for(const code of FALLBACK_ORDER[LANG])
+  {
+    if(values[code])
+      return values[code]
+  }
+  return ''
+}
+
+/// Reads a sheet column in the current language: "Titel_FR" / "Titel_EN" when filled, otherwise "Titel".
+export function localizedColumn(row, column)
+{
+  const read = suffix => (row[`${column}${suffix}`] || '').trim()
+  return localized({ de: read(''), en: read('_EN'), fr: read('_FR') })
 }

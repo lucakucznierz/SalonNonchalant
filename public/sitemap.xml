@@ -4,6 +4,7 @@
     <loc>https://salon-nonchalant.de/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://salon-nonchalant.de/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://salon-nonchalant.de/en/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://salon-nonchalant.de/fr/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,6 +12,15 @@
     <loc>https://salon-nonchalant.de/en/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://salon-nonchalant.de/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://salon-nonchalant.de/en/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://salon-nonchalant.de/fr/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://salon-nonchalant.de/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://salon-nonchalant.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://salon-nonchalant.de/en/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://salon-nonchalant.de/fr/" />
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
