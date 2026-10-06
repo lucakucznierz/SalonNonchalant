@@ -7,6 +7,8 @@ import sharp from 'sharp'
 const SOURCE_DIR = 'Photos'
 const TARGET_DIR = 'public/photos'
 const SIZES = { large: 2000, small: 800 }
+// Preview image for links shared on social media and messengers (1200 x 630 is the common format).
+const SHARE_IMAGE = { source: '_MG_6401 (2).jpg', target: 'public/og-image.jpg', width: 1200, height: 630 }
 
 function toSlug(fileName)
 {
@@ -37,4 +39,11 @@ for(const file of files)
 }
 
 await writeFile(path.join(TARGET_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2))
+
+await sharp(path.join(SOURCE_DIR, SHARE_IMAGE.source))
+  .rotate()
+  .resize({ width: SHARE_IMAGE.width, height: SHARE_IMAGE.height, fit: 'cover', position: 'attention' })
+  .jpeg({ quality: 82, mozjpeg: true })
+  .toFile(SHARE_IMAGE.target)
+console.log(`Share image: ${SHARE_IMAGE.target}`)
 console.log(`Done: ${manifest.length} photos`)

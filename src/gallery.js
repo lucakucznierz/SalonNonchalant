@@ -1,23 +1,27 @@
+import { localized } from './i18n'
+
 // Photos shown in the gallery, in this order. Names refer to files in public/photos
 // (generated from the originals in /Photos with "npm run photos").
-export const GALLERY_PHOTOS = [
-  { slug: 'mg-6401-2', alt: 'Die ganze Band im Kinosaal' },
-  { slug: 'img-6692', alt: 'Die Bläser in Schwarz-Weiß' },
-  { slug: 'img-6675', alt: 'Der Saxophonsatz vor roter Wand' },
-  { slug: 'img-6761', alt: 'Porträt zweier Bandmitglieder' },
-  { slug: 'img-6672', alt: 'Trompeten und Posaunen in den Kinosesseln' },
-  { slug: 'mg-6418', alt: 'Die Rhythmusgruppe mit Gitarre und Kontrabass' },
-  { slug: 'mg-6430', alt: 'Die Geigerinnen' },
-  { slug: 'img-6644', alt: 'Bläser in Schwarz-Weiß' },
-  { slug: 'img-6620', alt: 'Saxophone zwischen den Sitzreihen' },
-  { slug: 'img-6738', alt: 'Zwei Bandmitglieder an der Treppe' },
-  { slug: 'mg-6391-1', alt: 'Gruppenfoto im Vintage-Look' },
-  { slug: 'img-6666', alt: 'Die Bläser spielen im Saal' },
-  { slug: 'mg-6420', alt: 'Rhythmusgruppe in Schwarz-Weiß' },
-  { slug: 'img-6634', alt: 'Saxophonsatz vor der roten Wand' },
-  { slug: 'mg-6436', alt: 'Geigerinnen auf der Treppe' },
-  { slug: 'img-6694', alt: 'Die Bläser in den blauen Sesseln' }
+const PHOTOS = [
+  { slug: 'mg-6401-2', de: 'Die ganze Band im Kinosaal', en: 'The whole band in a cinema hall' },
+  { slug: 'img-6692', de: 'Die Bläser in Schwarz-Weiß', en: 'The horn section in black and white' },
+  { slug: 'img-6675', de: 'Der Saxophonsatz vor roter Wand', en: 'The saxophone section in front of a red wall' },
+  { slug: 'img-6761', de: 'Porträt zweier Bandmitglieder', en: 'Portrait of two band members' },
+  { slug: 'img-6672', de: 'Trompeten und Posaunen in den Kinosesseln', en: 'Trumpets and trombones in the cinema seats' },
+  { slug: 'mg-6418', de: 'Die Rhythmusgruppe mit Gitarre und Kontrabass', en: 'The rhythm section with guitar and double bass' },
+  { slug: 'mg-6430', de: 'Die Geigerinnen', en: 'The violinists' },
+  { slug: 'img-6644', de: 'Bläser in Schwarz-Weiß', en: 'Horns in black and white' },
+  { slug: 'img-6620', de: 'Saxophone zwischen den Sitzreihen', en: 'Saxophones between the rows of seats' },
+  { slug: 'img-6738', de: 'Zwei Bandmitglieder an der Treppe', en: 'Two band members on the stairs' },
+  { slug: 'mg-6391-1', de: 'Gruppenfoto im Vintage-Look', en: 'Group photo with a vintage look' },
+  { slug: 'img-6666', de: 'Die Bläser spielen im Saal', en: 'The horns playing in the hall' },
+  { slug: 'mg-6420', de: 'Rhythmusgruppe in Schwarz-Weiß', en: 'Rhythm section in black and white' },
+  { slug: 'img-6634', de: 'Saxophonsatz vor der roten Wand', en: 'Saxophone section in front of the red wall' },
+  { slug: 'mg-6436', de: 'Geigerinnen auf der Treppe', en: 'Violinists on the stairs' },
+  { slug: 'img-6694', de: 'Die Bläser in den blauen Sesseln', en: 'The horns in the blue seats' }
 ]
+
+export const GALLERY_PHOTOS = PHOTOS.map(photo => ({ slug: photo.slug, alt: localized(photo.de, photo.en) }))
 
 /// Returns the URL of a processed photo in the given size ("large" or "small").
 export function photoUrl(slug, size = 'large')

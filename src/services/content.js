@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 import Papa from 'papaparse'
 import { SHEET_ID, TABS } from '../config'
 import { parseDate, formatTime, startOfToday } from '../utils/dates'
+import { localized } from '../i18n'
 
 const LOCAL_FILES = {
   concerts: 'konzerte.csv',
@@ -62,7 +63,7 @@ function toTexts(rows)
   {
     const field = clean(row.Feld)
     if(field)
-      texts[field] = clean(row.Inhalt)
+      texts[field] = localized(clean(row.Inhalt), clean(row.Inhalt_EN))
   }
   return texts
 }
@@ -73,11 +74,11 @@ function toConcerts(rows)
     .map(row => ({
       date: parseDate(row.Datum),
       time: formatTime(row.Uhrzeit),
-      title: clean(row.Titel),
+      title: localized(clean(row.Titel), clean(row.Titel_EN)),
       venue: clean(row.Ort),
       address: clean(row.Adresse),
       link: clean(row.Link),
-      info: clean(row.Info)
+      info: localized(clean(row.Info), clean(row.Info_EN))
     }))
     .filter(concert => concert.date)
 }
@@ -86,8 +87,8 @@ function toLineup(rows)
 {
   return rows
     .map(row => ({
-      section: clean(row.Register),
-      instruments: clean(row.Instrumente),
+      section: localized(clean(row.Register), clean(row.Register_EN)),
+      instruments: localized(clean(row.Instrumente), clean(row.Instrumente_EN)),
       photo: clean(row.Foto)
     }))
     .filter(entry => entry.section)
@@ -113,7 +114,7 @@ export async function loadContent()
   content.loading = false
 }
 
-/// Returns an editable text by its field name, or the fallback when the field is empty.
+/// Returns an editable text by its field name (English column on the English page), or the fallback when empty.
 export function text(field, fallback = '')
 {
   return content.texts[field] || fallback

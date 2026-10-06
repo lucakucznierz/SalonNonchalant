@@ -1,5 +1,6 @@
-const MONTHS_SHORT = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
-const WEEKDAYS = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+import { LANG } from '../i18n'
+
+const LOCALE = LANG === 'en' ? 'en-GB' : 'de-DE'
 
 function buildDate(year, month, day)
 {
@@ -41,15 +42,22 @@ export function startOfToday()
 
 export function monthShort(date)
 {
-  return MONTHS_SHORT[date.getMonth()]
+  return date.toLocaleDateString(LOCALE, { month: 'short' }).replace('.', '')
 }
 
 export function weekday(date)
 {
-  return WEEKDAYS[date.getDay()]
+  return date.toLocaleDateString(LOCALE, { weekday: 'long' })
 }
 
 export function formatLongDate(date)
 {
-  return date.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })
+  return date.toLocaleDateString(LOCALE, { day: 'numeric', month: 'long', year: 'numeric' })
+}
+
+/// Formats a date (plus optional "HH:MM" time) as ISO 8601 for structured data, e.g. "2026-12-05T19:30".
+export function toIsoDate(date, time)
+{
+  const day = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+  return /^\d{2}:\d{2}$/.test(time) ? `${day}T${time}` : day
 }

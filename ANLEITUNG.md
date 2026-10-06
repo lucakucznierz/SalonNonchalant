@@ -5,6 +5,12 @@ Wer die Tabelle bearbeiten darf, kann die Website ändern. Programmierkenntnisse
 
 Änderungen erscheinen **sofort**, sobald jemand die Website neu lädt. Speichern ist nicht nötig, Google speichert automatisch.
 
+## Deutsch und Englisch
+
+Die Website gibt es auf Deutsch (salon-nonchalant.de) und auf Englisch (salon-nonchalant.de/en/).
+Spalten, deren Name auf **_EN** endet, enthalten die englische Fassung, z. B. `Titel_EN` oder `Inhalt_EN`.
+Bleibt eine _EN-Zelle leer, zeigt die englische Seite einfach den deutschen Text.
+
 ---
 
 ## Konzert eintragen
@@ -17,10 +23,12 @@ Wer die Tabelle bearbeiten darf, kann die Website ändern. Programmierkenntnisse
 | Datum     | Datum als **TT.MM.JJJJ** (Pflichtfeld)             | 05.12.2026                       |
 | Uhrzeit   | Beginn                                             | 19:30                            |
 | Titel     | Name der Veranstaltung                             | Winterball                       |
+| Titel_EN  | Englischer Titel (optional)                        | Winter Ball                      |
 | Ort       | Name des Veranstaltungsorts                        | Schauburg                        |
 | Adresse   | Straße und Stadt (wird zum Google-Maps-Link)       | Musterstraße 1, 12345 Musterstadt |
 | Link      | Link zu Tickets oder Infos (optional)              | https://…                        |
 | Info      | Kurzer Hinweis (optional)                          | Eintritt frei                    |
+| Info_EN   | Englischer Hinweis (optional)                      | Free entry                       |
 
 - Die Reihenfolge der Zeilen ist egal, die Website sortiert nach Datum.
 - Vergangene Konzerte rutschen automatisch unter „Vergangene Konzerte“. Ihr müsst nichts löschen.
@@ -43,6 +51,9 @@ Nur die Spalte **Inhalt** ändern, die Feldnamen bitte nicht umbenennen.
 | impressum, datenschutz   | Inhalt der Seiten Impressum und Datenschutz              |
 
 **Neuer Absatz:** In einer Zelle mit **Strg + Enter** (Mac: **Cmd + Enter**) eine neue Zeile beginnen.
+
+**Tipp für Google:** Erwähnt in den Texten ruhig, dass ihr aus **Leipzig** kommt (z. B. „Bigband aus Leipzig“).
+So findet man euch leichter, wenn jemand nach „Bigband Leipzig“ oder „Swing Band Leipzig“ sucht.
 
 ## Besetzung ändern
 

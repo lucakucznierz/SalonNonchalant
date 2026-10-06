@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { content, text } from '../services/content'
 import { photoUrl } from '../gallery'
 import { formatLongDate } from '../utils/dates'
+import { t } from '../i18n'
 
 const nextConcert = computed(() => content.upcomingConcerts[0])
 </script>
@@ -14,19 +15,19 @@ const nextConcert = computed(() => content.upcomingConcerts[0])
       :src="photoUrl('mg-6401-2')"
       :srcset="`${photoUrl('mg-6401-2', 'small')} 800w, ${photoUrl('mg-6401-2')} 2000w`"
       sizes="100vw"
-      alt="Die Bigband Salon Nonchalant im Kinosaal"
+      :alt="t('heroAlt')"
       fetchpriority="high"
     />
     <div class="hero__content container">
-      <p class="eyebrow">{{ text('hero_zeile', 'Bigband') }}</p>
+      <p class="eyebrow">{{ text('hero_zeile', t('heroFallback')) }}</p>
       <h1 class="hero__title">Salon <em>Nonchalant</em></h1>
       <p class="hero__slogan">{{ text('slogan') }}</p>
       <div class="hero__actions">
-        <a href="#konzerte" class="button">Nächste Konzerte</a>
-        <a href="#kontakt" class="button button--ghost">Band buchen</a>
+        <a href="#konzerte" class="button">{{ t('upcomingConcerts') }}</a>
+        <a href="#kontakt" class="button button--ghost">{{ t('bookBand') }}</a>
       </div>
       <a v-if="nextConcert" href="#konzerte" class="hero__next">
-        <span class="hero__next-label">Nächster Auftritt</span>
+        <span class="hero__next-label">{{ t('nextShow') }}</span>
         <span>{{ formatLongDate(nextConcert.date) }} · {{ nextConcert.title }}<template v-if="nextConcert.venue">, {{ nextConcert.venue }}</template></span>
       </a>
     </div>

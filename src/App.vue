@@ -1,6 +1,7 @@
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
-import { loadContent } from './services/content'
+import { loadContent, content } from './services/content'
+import { publishConcertEvents } from './services/structuredData'
 import SiteHeader from './components/SiteHeader.vue'
 import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'
@@ -38,7 +39,7 @@ async function updateViewFromHash()
 
 onMounted(() =>
 {
-  loadContent()
+  loadContent().then(() => publishConcertEvents(content.upcomingConcerts))
   updateViewFromHash()
   window.addEventListener('hashchange', updateViewFromHash)
 })

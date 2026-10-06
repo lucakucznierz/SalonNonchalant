@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { content, text, paragraphs } from '../services/content'
 import { photoUrl } from '../gallery'
+import { t } from '../i18n'
 
 const facts = computed(() => [1, 2, 3]
   .map(n => ({ number: text(`fakt${n}_zahl`), label: text(`fakt${n}_text`) }))
@@ -12,8 +13,8 @@ const facts = computed(() => [1, 2, 3]
   <section id="band" class="section">
     <div class="container about">
       <div class="about__text">
-        <p class="eyebrow">Die Band</p>
-        <h2>{{ text('ueber_titel', 'Über uns') }}</h2>
+        <p class="eyebrow">{{ t('bandEyebrow') }}</p>
+        <h2>{{ text('ueber_titel', t('aboutFallback')) }}</h2>
         <p v-for="(paragraph, index) in paragraphs('ueber_text')" :key="index">{{ paragraph }}</p>
         <dl v-if="facts.length" class="about__facts">
           <div v-for="fact in facts" :key="fact.label">
@@ -23,12 +24,12 @@ const facts = computed(() => [1, 2, 3]
         </dl>
       </div>
       <figure class="about__image">
-        <img :src="photoUrl('img-6692')" alt="Die Bläser von Salon Nonchalant" loading="lazy" />
+        <img :src="photoUrl('img-6692')" :alt="t('aboutAlt')" loading="lazy" />
       </figure>
     </div>
 
     <div v-if="content.lineup.length" class="container lineup">
-      <h3 class="lineup__title">Besetzung</h3>
+      <h3 class="lineup__title">{{ t('lineup') }}</h3>
       <ul class="lineup__grid">
         <li v-for="entry in content.lineup" :key="entry.section" class="lineup__card">
           <img v-if="entry.photo" :src="photoUrl(entry.photo, 'small')" :alt="entry.section" loading="lazy" />

@@ -1,4 +1,6 @@
 <script setup>
+import { t } from '../i18n'
+
 const YEAR = new Date().getFullYear()
 </script>
 
@@ -7,8 +9,8 @@ const YEAR = new Date().getFullYear()
     <div class="container footer__inner">
       <a href="#top" class="footer__logo">Salon <em>Nonchalant</em></a>
       <nav class="footer__links">
-        <a href="#impressum">Impressum</a>
-        <a href="#datenschutz">Datenschutz</a>
+        <a href="#impressum">{{ t('impressum') }}</a>
+        <a href="#datenschutz">{{ t('datenschutz') }}</a>
       </nav>
       <p class="footer__copy">© {{ YEAR }} Salon Nonchalant</p>
     </div>

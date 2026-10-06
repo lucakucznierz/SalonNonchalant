@@ -1,18 +1,18 @@
 <script setup>
 import { computed } from 'vue'
 import { paragraphs } from '../services/content'
+import { t } from '../i18n'
 
 const props = defineProps({ page: { type: String, required: true } })
 
-const TITLES = { impressum: 'Impressum', datenschutz: 'Datenschutz' }
-
-const title = computed(() => TITLES[props.page])
+// The page names ("impressum", "datenschutz") double as translation keys for the titles.
+const title = computed(() => t(props.page))
 </script>
 
 <template>
   <section class="section legal">
     <div class="container legal__inner">
-      <a href="#top" class="legal__back">← Zurück zur Startseite</a>
+      <a href="#top" class="legal__back">{{ t('backHome') }}</a>
       <h1>{{ title }}</h1>
       <p v-for="(paragraph, index) in paragraphs(page)" :key="index">{{ paragraph }}</p>
     </div>

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { text, paragraphs } from '../services/content'
 import { photoUrl } from '../gallery'
+import { t } from '../i18n'
 
 const socialLinks = computed(() => [
   { label: 'Instagram', url: text('instagram') },
@@ -14,8 +15,8 @@ const socialLinks = computed(() => [
   <section id="kontakt" class="contact">
     <img class="contact__image" :src="photoUrl('img-6761')" alt="" loading="lazy" />
     <div class="container contact__inner">
-      <p class="eyebrow">Booking & Kontakt</p>
-      <h2>{{ text('buchen_titel', 'Kontakt') }}</h2>
+      <p class="eyebrow">{{ t('contactEyebrow') }}</p>
+      <h2>{{ text('buchen_titel', t('contactFallback')) }}</h2>
       <p v-for="(paragraph, index) in paragraphs('buchen_text')" :key="index" class="contact__text">{{ paragraph }}</p>
       <div class="contact__actions">
         <a v-if="text('email')" :href="`mailto:${text('email')}`" class="button">{{ text('email') }}</a>

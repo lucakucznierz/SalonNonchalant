@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, onBeforeUnmount } from 'vue'
 import { GALLERY_PHOTOS, photoUrl } from '../gallery'
+import { t } from '../i18n'
 
 const INITIAL_COUNT = 8
 
@@ -56,8 +57,8 @@ onBeforeUnmount(() =>
 <template>
   <section id="galerie" class="section">
     <div class="container">
-      <p class="eyebrow">Eindrücke</p>
-      <h2>Galerie</h2>
+      <p class="eyebrow">{{ t('galleryEyebrow') }}</p>
+      <h2>{{ t('gallery') }}</h2>
       <ul class="gallery">
         <li
           v-for="(photo, index) in GALLERY_PHOTOS"
@@ -66,23 +67,23 @@ onBeforeUnmount(() =>
           class="gallery__item"
           :class="{ 'gallery__item--wide': index % 5 === 0 }"
         >
-          <button class="gallery__button" :aria-label="`Foto vergrößern: ${photo.alt}`" @click="open(index)">
+          <button class="gallery__button" :aria-label="`${t('enlargePhoto')}: ${photo.alt}`" @click="open(index)">
             <img :src="photoUrl(photo.slug, index % 5 === 0 ? 'large' : 'small')" :alt="photo.alt" loading="lazy" />
           </button>
         </li>
       </ul>
       <div v-if="GALLERY_PHOTOS.length > INITIAL_COUNT" class="gallery__more">
         <button class="button button--ghost" @click="showAll = !showAll">
-          {{ showAll ? 'Weniger anzeigen' : 'Alle Fotos anzeigen' }}
+          {{ showAll ? t('showFewerPhotos') : t('showAllPhotos') }}
         </button>
       </div>
     </div>
 
-    <div v-if="openIndex !== null" class="lightbox" role="dialog" aria-modal="true" aria-label="Fotoansicht" @click.self="close">
+    <div v-if="openIndex !== null" class="lightbox" role="dialog" aria-modal="true" :aria-label="t('photoView')" @click.self="close">
       <img :src="photoUrl(GALLERY_PHOTOS[openIndex].slug)" :alt="GALLERY_PHOTOS[openIndex].alt" />
-      <button class="lightbox__button lightbox__close" aria-label="Schließen" @click="close">✕</button>
-      <button class="lightbox__button lightbox__prev" aria-label="Vorheriges Foto" @click="step(-1)">‹</button>
-      <button class="lightbox__button lightbox__next" aria-label="Nächstes Foto" @click="step(1)">›</button>
+      <button class="lightbox__button lightbox__close" :aria-label="t('close')" @click="close">✕</button>
+      <button class="lightbox__button lightbox__prev" :aria-label="t('previousPhoto')" @click="step(-1)">‹</button>
+      <button class="lightbox__button lightbox__next" :aria-label="t('nextPhoto')" @click="step(1)">›</button>
       <p class="lightbox__caption">{{ openIndex + 1 }} / {{ GALLERY_PHOTOS.length }} · {{ GALLERY_PHOTOS[openIndex].alt }}</p>
     </div>
   </section>

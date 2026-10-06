@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { t, LANGUAGE_SWITCH } from '../i18n'
 
 defineProps({ solid: Boolean })
 
 const LINKS = [
-  { href: '#band', label: 'Band' },
-  { href: '#konzerte', label: 'Konzerte' },
-  { href: '#galerie', label: 'Galerie' },
-  { href: '#kontakt', label: 'Booking' }
+  { href: '#band', label: t('navBand') },
+  { href: '#konzerte', label: t('navConcerts') },
+  { href: '#galerie', label: t('navGallery') },
+  { href: '#kontakt', label: t('navBooking') }
 ]
 
 const scrolled = ref(false)
@@ -35,13 +36,20 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
         class="header__toggle"
         :aria-expanded="menuOpen"
         aria-controls="main-nav"
-        aria-label="Menü öffnen"
+        :aria-label="t('openMenu')"
         @click="menuOpen = !menuOpen"
       >
         <span></span><span></span><span></span>
       </button>
       <nav id="main-nav" class="header__nav" :class="{ 'header__nav--open': menuOpen }">
         <a v-for="link in LINKS" :key="link.href" :href="link.href" @click="menuOpen = false">{{ link.label }}</a>
+        <a
+          class="header__lang"
+          :href="LANGUAGE_SWITCH.href"
+          :hreflang="LANGUAGE_SWITCH.hreflang"
+          :lang="LANGUAGE_SWITCH.hreflang"
+          :title="LANGUAGE_SWITCH.title"
+        >{{ LANGUAGE_SWITCH.label }}</a>
       </nav>
     </div>
   </header>
@@ -88,6 +96,13 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
 .header__nav a:hover {
   color: var(--gold);
 }
+.header__nav .header__lang {
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
 .header__toggle {
   display: none;
   background: none;
@@ -124,6 +139,12 @@ onBeforeUnmount(() => window.removeEventListener('scroll', updateScrolled))
   .header__nav a {
     padding: 1rem 24px;
     border-top: 1px solid var(--line);
+  }
+  .header__nav .header__lang {
+    align-self: flex-start;
+    margin: 1rem 24px;
+    padding: 0.3rem 0.9rem;
+    border-top-color: var(--gold);
   }
 }
 </style>

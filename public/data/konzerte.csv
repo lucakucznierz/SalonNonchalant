@@ -1,5 +1,5 @@
-Datum,Uhrzeit,Titel,Ort,Adresse,Link,Info
-05.12.2026,19:30,Beispielkonzert: Winterball,Beispiel-Saal,Musterstraße 1 12345 Musterstadt,,Bitte durch echte Termine ersetzen
-19.12.2026,20:00,Beispielkonzert: Weihnachtsswing,Beispiel-Kino,Musterstraße 2 12345 Musterstadt,https://example.com,Eintritt frei – Spenden willkommen
-14.02.2027,18:00,Beispielkonzert: Valentinstanz,Beispiel-Club,Musterstraße 3 12345 Musterstadt,,
-21.06.2026,16:00,Beispielkonzert: Sommerfest,Beispiel-Park,,,
+Datum,Uhrzeit,Titel,Titel_EN,Ort,Adresse,Link,Info,Info_EN
+05.12.2026,19:30,Beispielkonzert: Winterball,Example concert: Winter Ball,Beispiel-Saal,Musterstraße 1 04109 Leipzig,,Bitte durch echte Termine ersetzen,Please replace with real dates
+19.12.2026,20:00,Beispielkonzert: Weihnachtsswing,Example concert: Christmas Swing,Beispiel-Kino,Musterstraße 2 04109 Leipzig,https://example.com,Eintritt frei – Spenden willkommen,Free entry – donations welcome
+14.02.2027,18:00,Beispielkonzert: Valentinstanz,Example concert: Valentine's Dance,Beispiel-Club,Musterstraße 3 04109 Leipzig,,,
+21.06.2026,16:00,Beispielkonzert: Sommerfest,Example concert: Summer Party,Beispiel-Park,,,,

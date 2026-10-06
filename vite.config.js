@@ -1,8 +1,16 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// Relative base path so the built site works on any host or sub-folder.
+// Two pages share one app: "/" (German) and "/en/" (English). The site runs at the domain root.
 export default defineConfig({
-  base: './',
-  plugins: [vue()]
+  base: '/',
+  plugins: [vue()],
+  build: {
+    rollupOptions: {
+      input: {
+        de: 'index.html',
+        en: 'en/index.html'
+      }
+    }
+  }
 })

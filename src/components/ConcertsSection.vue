@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { content } from '../services/content'
 import { monthShort, weekday, formatLongDate } from '../utils/dates'
+import { t } from '../i18n'
 
 const showPast = ref(false)
 
@@ -15,12 +16,12 @@ function mapsUrl(concert)
 <template>
   <section id="konzerte" class="section section--alt">
     <div class="container">
-      <p class="eyebrow">Live erleben</p>
-      <h2>Konzerte</h2>
+      <p class="eyebrow">{{ t('concertsEyebrow') }}</p>
+      <h2>{{ t('concerts') }}</h2>
 
-      <p v-if="content.loading" class="concerts__note">Termine werden geladen …</p>
+      <p v-if="content.loading" class="concerts__note">{{ t('loadingConcerts') }}</p>
       <p v-else-if="!content.upcomingConcerts.length" class="concerts__note">
-        Gerade stehen keine Termine fest. Schaut bald wieder vorbei oder <a href="#kontakt">bucht uns für euer Event</a>.
+        {{ t('noConcerts') }} <a href="#kontakt">{{ t('noConcertsLink') }}</a>.
       </p>
 
       <ol v-else class="concerts">
@@ -30,9 +31,9 @@ function mapsUrl(concert)
             <span class="concert__month">{{ monthShort(concert.date) }} {{ concert.date.getFullYear() }}</span>
           </div>
           <div class="concert__details">
-            <h3>{{ concert.title || 'Konzert' }}</h3>
+            <h3>{{ concert.title || t('concertFallback') }}</h3>
             <p class="concert__meta">
-              {{ weekday(concert.date) }}<template v-if="concert.time"> · {{ concert.time }} Uhr</template>
+              {{ weekday(concert.date) }}<template v-if="concert.time"> · {{ concert.time }}{{ t('timeSuffix') }}</template>
               <template v-if="concert.venue"> · {{ concert.venue }}</template>
             </p>
             <p v-if="concert.address" class="concert__address">
@@ -40,13 +41,13 @@ function mapsUrl(concert)
             </p>
             <p v-if="concert.info" class="concert__info">{{ concert.info }}</p>
           </div>
-          <a v-if="concert.link" :href="concert.link" class="button button--small" target="_blank" rel="noopener">Mehr Infos</a>
+          <a v-if="concert.link" :href="concert.link" class="button button--small" target="_blank" rel="noopener">{{ t('moreInfo') }}</a>
         </li>
       </ol>
 
       <div v-if="content.pastConcerts.length" class="past">
         <button class="past__toggle" :aria-expanded="showPast" @click="showPast = !showPast">
-          {{ showPast ? 'Vergangene Konzerte ausblenden' : `Vergangene Konzerte anzeigen (${content.pastConcerts.length})` }}
+          {{ showPast ? t('hidePast') : `${t('showPast')} (${content.pastConcerts.length})` }}
         </button>
         <ul v-if="showPast" class="past__list">
           <li v-for="(concert, index) in content.pastConcerts" :key="index">
