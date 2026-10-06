@@ -18,7 +18,7 @@ Website of the big band Salon Nonchalant. Built with [Vue 3](https://vuejs.org/)
 
 ## How content works
 
-All editable content comes from a Google Sheet with three tabs: `Konzerte`, `Texte` and `Besetzung`.
+All editable content comes from a Google Sheet with four tabs: `Konzerte`, `Texte`, `Besetzung` and `Mitglieder`.
 The browser loads the tabs as CSV directly from Google (`src/services/content.js`), so edits go live without a rebuild.
 
 - The sheet ID is set in `src/config.js` (`SHEET_ID`). The sheet must be shared as "Anyone with the link can view".

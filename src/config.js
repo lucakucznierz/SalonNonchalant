@@ -8,5 +8,6 @@ export const SHEET_ID = '1S4g2EtQKjH2sYwQ1UiCcFTT6TAA627l936XrANXjRcI'
 export const TABS = {
   concerts: 'Konzerte',
   texts: 'Texte',
-  lineup: 'Besetzung'
+  lineup: 'Besetzung',
+  members: 'Mitglieder'
 }

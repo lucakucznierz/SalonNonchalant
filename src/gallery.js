@@ -28,3 +28,18 @@ export function photoUrl(slug, size = 'large')
 {
   return `${import.meta.env.BASE_URL}photos/${slug}-${size}.webp`
 }
+
+/// Turns a photo reference from the sheet into an image URL. Accepts a Google Drive share link,
+/// any direct image link, or the name of a photo in public/photos (e.g. "img-6675").
+export function sheetPhotoUrl(value)
+{
+  const reference = (value || '').trim()
+  if(!reference)
+    return null
+  const driveId = reference.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]+)/)?.[1]
+  if(driveId)
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
+  if(/^https?:\/\//.test(reference))
+    return reference
+  return photoUrl(reference, 'small')
+}

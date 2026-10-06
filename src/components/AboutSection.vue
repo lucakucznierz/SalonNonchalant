@@ -1,8 +1,9 @@
 <script setup>
 import { computed } from 'vue'
-import { content, text, paragraphs } from '../services/content'
+import { text, paragraphs } from '../services/content'
 import { photoUrl } from '../gallery'
 import { t } from '../i18n'
+import LineupSection from './LineupSection.vue'
 
 const facts = computed(() => [1, 2, 3]
   .map(n => ({ number: text(`fakt${n}_zahl`), label: text(`fakt${n}_text`) }))
@@ -28,18 +29,7 @@ const facts = computed(() => [1, 2, 3]
       </figure>
     </div>
 
-    <div v-if="content.lineup.length" class="container lineup">
-      <h3 class="lineup__title">{{ t('lineup') }}</h3>
-      <ul class="lineup__grid">
-        <li v-for="entry in content.lineup" :key="entry.section" class="lineup__card">
-          <img v-if="entry.photo" :src="photoUrl(entry.photo, 'small')" :alt="entry.section" loading="lazy" />
-          <div class="lineup__body">
-            <h4>{{ entry.section }}</h4>
-            <p>{{ entry.instruments }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <LineupSection />
   </section>
 </template>
 
@@ -82,56 +72,6 @@ const facts = computed(() => [1, 2, 3]
   color: var(--muted);
   font-size: 0.9rem;
 }
-.lineup {
-  margin-top: clamp(4rem, 10vw, 7rem);
-}
-.lineup__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  margin: 0 0 1.5rem;
-}
-.lineup__grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 1rem;
-}
-.lineup__card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s;
-}
-.lineup__card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-}
-.lineup__card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-}
-.lineup__body {
-  padding: 1rem 1.1rem 1.2rem;
-}
-.lineup__body h4 {
-  margin: 0 0 0.3rem;
-  hyphens: auto;
-  overflow-wrap: break-word;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.35rem;
-}
-.lineup__body p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
 
 @media (max-width: 860px) {
   .about {
@@ -139,19 +79,6 @@ const facts = computed(() => [1, 2, 3]
   }
   .about__image img {
     aspect-ratio: 4 / 3;
-  }
-}
-
-@media (max-width: 520px) {
-  .lineup__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .lineup__body {
-    padding: 0.85rem 0.8rem 1rem;
-  }
-  /* Scales with the screen so long words like "Rhythmusgruppe" fit into half the width. */
-  .lineup__body h4 {
-    font-size: clamp(1rem, 4.2vw, 1.35rem);
   }
 }
 </style>

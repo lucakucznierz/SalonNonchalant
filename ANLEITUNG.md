@@ -60,11 +60,38 @@ So findet man euch leichter, wenn jemand nach „Bigband Leipzig“ oder „Swin
 Reiter **Besetzung**: eine Zeile pro Register (z. B. Saxophone).
 Die Spalte **Foto** enthält den Namen eines Fotos (z. B. `img-6675`). Leer lassen, wenn kein Foto gezeigt werden soll.
 
+## Mitglieder vorstellen
+
+Klickt man auf der Website auf ein Register (z. B. Saxophone), klappen darunter die Mitglieder auf.
+Sie stehen im Reiter **Mitglieder**, eine Zeile pro Person:
+
+| Spalte        | Was hinein gehört                                                     | Beispiel           |
+|---------------|-----------------------------------------------------------------------|--------------------|
+| Register      | Genau wie im Reiter **Besetzung** geschrieben                         | Saxophone          |
+| Name          | Name, wie er auf der Website stehen soll (Pflichtfeld)               | Anna Muster        |
+| Instrument    | Instrument                                                            | Altsaxophon        |
+| Instrument_EN | Instrument auf Englisch (optional)                                    | Alto saxophone     |
+| Info          | Ein, zwei Sätze über die Person (optional)                            | Spielt seit 2015 … |
+| Info_EN       | Dasselbe auf Englisch (optional)                                      | Has played since … |
+| Foto          | Link zum Foto (optional, siehe unten)                                 |                    |
+
+Die Reihenfolge der Zeilen ist auch die Reihenfolge auf der Website. Ohne Foto erscheinen die Initialen.
+
+**Foto hinzufügen:**
+1. Foto in Google Drive hochladen (am besten in einen gemeinsamen Ordner „Website-Fotos“).
+2. Rechtsklick auf das Foto → **Teilen** → „Allgemeiner Zugriff“: **Jeder mit dem Link** → **Link kopieren**.
+3. Den Link in die Spalte **Foto** einfügen.
+
+Am besten eignen sich quadratische Fotos oder Porträts, auf denen das Gesicht mittig ist.
+Bitte nur Fotos von Personen verwenden, die mit der Veröffentlichung einverstanden sind.
+
 ## Wenn etwas nicht stimmt
 
 - **Ein Konzert fehlt?** Meist ist das Datum falsch geschrieben. Es muss so aussehen: `05.12.2026`.
 - **Die ganze Seite zeigt nur Beispieltexte?** Dann ist die Tabelle nicht mehr für „Jeder mit dem Link“ freigegeben,
-  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte** und **Besetzung** heißen.
+  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte**, **Besetzung** und **Mitglieder** heißen.
+- **Ein Foto erscheint nicht, nur Initialen?** Dann ist das Foto in Google Drive nicht für „Jeder mit dem Link“ freigegeben.
+- **Eine Person fehlt beim Register?** Der Eintrag in der Spalte **Register** muss genau wie im Reiter **Besetzung** geschrieben sein.
 - Google speichert einen Versionsverlauf: **Datei → Versionsverlauf** stellt einen früheren Stand wieder her.
 
 Neue Fotos oder Änderungen am Design macht jemand mit Zugriff auf den Code (siehe `README.md`).
