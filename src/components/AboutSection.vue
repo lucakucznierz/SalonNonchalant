@@ -86,6 +86,8 @@ const facts = computed(() => [1, 2, 3]
   margin-top: clamp(4rem, 10vw, 7rem);
 }
 .lineup__title {
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: clamp(1.8rem, 4vw, 2.4rem);
   margin: 0 0 1.5rem;
 }
@@ -94,7 +96,7 @@ const facts = computed(() => [1, 2, 3]
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 1rem;
 }
 .lineup__card {
@@ -119,6 +121,8 @@ const facts = computed(() => [1, 2, 3]
 }
 .lineup__body h4 {
   margin: 0 0 0.3rem;
+  hyphens: auto;
+  overflow-wrap: break-word;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 1.35rem;
@@ -135,6 +139,19 @@ const facts = computed(() => [1, 2, 3]
   }
   .about__image img {
     aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 520px) {
+  .lineup__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lineup__body {
+    padding: 0.85rem 0.8rem 1rem;
+  }
+  /* Scales with the screen so long words like "Rhythmusgruppe" fit into half the width. */
+  .lineup__body h4 {
+    font-size: clamp(1rem, 4.2vw, 1.35rem);
   }
 }
 </style>
