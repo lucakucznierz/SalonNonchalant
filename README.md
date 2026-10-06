@@ -1,1 +1,50 @@
-# SalonNonchalant
+# Salon Nonchalant – Website
+
+Website of the big band Salon Nonchalant. Built with [Vue 3](https://vuejs.org/) and [Vite](https://vitejs.dev/), deployed as a static site.
+
+- **Band members** edit content in a Google Sheet. See [ANLEITUNG.md](ANLEITUNG.md) (German).
+- **Developers** read on.
+
+## How content works
+
+All editable content comes from a Google Sheet with three tabs: `Konzerte`, `Texte` and `Besetzung`.
+The browser loads the tabs as CSV directly from Google (`src/services/content.js`), so edits go live without a rebuild.
+
+- The sheet ID is set in `src/config.js` (`SHEET_ID`). The sheet must be shared as "Anyone with the link can view".
+- While `SHEET_ID` is empty, or if Google can't be reached, the site uses the example files in `public/data/`.
+  These files also serve as templates: import each CSV as one tab into a new Google Sheet (File → Import).
+
+## Development
+
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # production build into dist/
+npm run preview  # serve the production build
+```
+
+## Photos
+
+The high-resolution originals live in `/Photos`. That folder is ignored by git because it is too large (~650 MB).
+`npm run photos` converts them into web-sized WebP files in `public/photos/` (2000 px and 800 px wide).
+Which photos appear in the gallery, and in what order, is set in `src/gallery.js`.
+
+## Structure
+
+```
+src/
+  App.vue                 page layout, switches to Impressum/Datenschutz via URL hash
+  config.js               Google Sheet ID and tab names
+  gallery.js              gallery photo list
+  services/content.js     loads and parses the sheet
+  utils/dates.js          date parsing and formatting
+  components/             one component per page section
+  styles/main.css         design tokens and shared styles
+public/
+  data/                   example content (fallback and sheet template)
+  photos/                 optimized photos (generated)
+scripts/
+  optimize-photos.mjs     photo conversion
+```
+
+Fonts (DM Serif Display, Inter) are self-hosted through `@fontsource`, so no requests go to Google Fonts.

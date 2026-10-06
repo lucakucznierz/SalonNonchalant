@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# High-resolution originals are too large for git; web versions live in public/photos.
+Photos/

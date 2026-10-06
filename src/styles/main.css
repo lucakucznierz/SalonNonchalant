@@ -1,0 +1,145 @@
+:root {
+  --bg: #0e0b0b;
+  --surface: #181213;
+  --surface-alt: #140f10;
+  --red: #6b1220;
+  --gold: #d4a95a;
+  --gold-light: #ecd3a2;
+  --text: #f3ece4;
+  --muted: #b8aca2;
+  --line: rgb(243 236 228 / 0.12);
+  --radius: 14px;
+  --container: 1180px;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--gold);
+  text-underline-offset: 3px;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  margin: 0.3rem 0 1.5rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: clamp(4.5rem, 10vw, 8rem) 0;
+}
+
+.section--alt {
+  background: var(--surface-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: var(--gold);
+  color: #1a1206;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.button:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: rgb(243 236 228 / 0.4);
+}
+
+.button--ghost:hover {
+  background: transparent;
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.button--small {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
