@@ -62,6 +62,5 @@ await renderPng(MASKABLE, 512, 'public/icon-maskable-512.png')
 const icoSizes = [16, 32, 48]
 const icoImages = await Promise.all(icoSizes.map(async size => ({ size, data: await renderPng(ROUNDED, size) })))
 await writeFile('public/favicon.ico', toIco(icoImages))
-await renderPng(ROUNDED, 48, 'public/favicon-48.png')
 
 console.log('Icons written to public/')
