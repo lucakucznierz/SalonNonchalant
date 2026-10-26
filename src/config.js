@@ -10,5 +10,6 @@ export const TABS = {
   texts: 'Texte',
   lineup: 'Besetzung',
   members: 'Mitglieder',
-  gallery: 'Galerie'
+  gallery: 'Galerie',
+  pageImages: 'Bilder'
 }

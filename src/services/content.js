@@ -13,7 +13,8 @@ const TABLES = {
   texts: { file: 'texte.csv', requiredColumns: ['Feld', 'Inhalt'], useLocalFallback: true },
   lineup: { file: 'besetzung.csv', requiredColumns: ['Register', 'Instrumente'], useLocalFallback: true },
   members: { file: 'mitglieder.csv', requiredColumns: ['Name', 'Register'], useLocalFallback: false },
-  gallery: { file: 'galerie.csv', requiredColumns: ['Foto', 'Beschreibung'], useLocalFallback: true }
+  gallery: { file: 'galerie.csv', requiredColumns: ['Foto', 'Beschreibung'], useLocalFallback: true },
+  pageImages: { file: 'bilder.csv', requiredColumns: ['Bereich', 'Foto'], useLocalFallback: true }
 }
 
 /// Shared, reactive site content. Filled once by loadContent().
@@ -23,7 +24,8 @@ export const content = reactive({
   upcomingConcerts: [],
   pastConcerts: [],
   lineup: [],
-  galleryPhotos: []
+  galleryPhotos: [],
+  pageImages: {}
 })
 
 function sheetUrl(tabName)
@@ -140,11 +142,24 @@ function toGalleryPhotos(rows)
     .filter(photo => photo.small)
 }
 
+/// Maps the "Bilder" tab to { oben: 'img-…' | 'https://…', band: …, kontakt: … }.
+function toPageImages(rows)
+{
+  const images = {}
+  for(const row of rows)
+  {
+    const area = clean(row.Bereich).toLowerCase()
+    if(area)
+      images[area] = clean(row.Foto)
+  }
+  return images
+}
+
 /// Loads all content tables in parallel and fills the shared content object.
 export async function loadContent()
 {
-  const [textRows, concertRows, lineupRows, memberRows, galleryRows] = await Promise.all(
-    ['texts', 'concerts', 'lineup', 'members', 'gallery'].map(key => loadTable(key).catch(error =>
+  const [textRows, concertRows, lineupRows, memberRows, galleryRows, pageImageRows] = await Promise.all(
+    ['texts', 'concerts', 'lineup', 'members', 'gallery', 'pageImages'].map(key => loadTable(key).catch(error =>
     {
       console.error(`Content "${key}" could not be loaded.`, error)
       return []
@@ -158,6 +173,7 @@ export async function loadContent()
   content.pastConcerts = concerts.filter(c => c.date < today).sort((a, b) => b.date - a.date)
   content.lineup = toLineup(lineupRows, memberRows)
   content.galleryPhotos = toGalleryPhotos(galleryRows)
+  content.pageImages = toPageImages(pageImageRows)
   content.loading = false
 }
 
@@ -167,7 +183,7 @@ export function text(field, fallback = '')
   return content.texts[field] || fallback
 }
 
-// The large section photos, changeable via the rows "bild_oben", "bild_band" and "bild_kontakt" in the Texte tab.
+// Built-in photos for the large section photos, used when the "Bilder" tab leaves an area empty.
 const PAGE_IMAGE_DEFAULTS = {
   oben: 'mg-6401-2',
   band: 'img-6692',
@@ -180,7 +196,7 @@ export function pageImage(key, size = 'large')
 {
   if(content.loading)
     return null
-  return sheetPhotoUrl(text(`bild_${key}`) || PAGE_IMAGE_DEFAULTS[key], size)
+  return sheetPhotoUrl(content.pageImages[key] || PAGE_IMAGE_DEFAULTS[key], size)
 }
 
 /// Splits a multi-line text into paragraphs (blank line or line break = new paragraph).

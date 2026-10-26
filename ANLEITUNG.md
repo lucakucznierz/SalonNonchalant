@@ -54,18 +54,27 @@ Nur die Spalte **Inhalt** ändern, die Feldnamen bitte nicht umbenennen.
 | email, telefon           | Kontaktknöpfe (leer lassen = Knopf wird ausgeblendet)    |
 | instagram, facebook, youtube | Vollständige Links zu euren Profilen (leer = ausgeblendet) |
 | impressum, datenschutz   | Inhalt der Seiten Impressum und Datenschutz              |
-| bild_oben                | Großes Foto ganz oben (Google-Drive-Link oder Name eines Website-Fotos) |
-| bild_band                | Foto neben dem Band-Text                                 |
-| bild_kontakt             | Hintergrundfoto im Booking-Bereich                       |
-
-**Fotos oben und im Booking-Bereich:** Hier unbedingt **Querformat-Fotos** nehmen – sie füllen die ganze Breite,
-Hochformat-Fotos werden stark beschnitten. Bleibt eine bild_-Zeile leer oder fehlt sie, zeigt die Website das bisherige Foto.
-Fotos aus Google Drive einfügen wie unter „Foto hinzufügen“ beschrieben.
 
 **Neuer Absatz:** In einer Zelle mit **Strg + Enter** (Mac: **Cmd + Enter**) eine neue Zeile beginnen.
 
 **Tipp für Google:** Erwähnt in den Texten ruhig, dass ihr aus **Leipzig** kommt (z. B. „Bigband aus Leipzig“).
 So findet man euch leichter, wenn jemand nach „Bigband Leipzig“ oder „Swing Band Leipzig“ sucht.
+
+## Große Fotos ändern
+
+Reiter **Bilder**: die drei großen Fotos der Seite, eine Zeile pro Bereich.
+
+| Bereich | Wo auf der Website                       | Foto am besten |
+|---------|------------------------------------------|----------------|
+| oben    | Großes Foto ganz oben                    | Querformat     |
+| band    | Foto neben dem Band-Text                 | beliebig       |
+| kontakt | Hintergrund im Booking-Bereich           | Querformat     |
+
+- In die Spalte **Foto** kommt ein Google-Drive-Link (siehe „Foto hinzufügen“ unten) oder der Name eines Fotos
+  von der Website (z. B. `mg-6401-2`). Die Spalte **Hinweis** ist nur eine Erklärung und wird nicht angezeigt.
+- Bei **oben** und **kontakt** unbedingt **Querformat-Fotos** nehmen – sie füllen die ganze Breite,
+  Hochformat-Fotos werden stark beschnitten.
+- Bleibt **Foto** leer, zeigt die Website das ursprüngliche Foto. Die Namen in der Spalte **Bereich** nicht ändern.
 
 ## Besetzung ändern
 
@@ -117,7 +126,7 @@ Bitte nur Fotos von Personen verwenden, die mit der Veröffentlichung einverstan
 
 - **Ein Konzert fehlt?** Meist ist das Datum falsch geschrieben. Es muss so aussehen: `05.12.2026`.
 - **Die ganze Seite zeigt nur Beispieltexte?** Dann ist die Tabelle nicht mehr für „Jeder mit dem Link“ freigegeben,
-  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte**, **Besetzung**, **Mitglieder** und **Galerie** heißen.
+  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte**, **Besetzung**, **Mitglieder**, **Galerie** und **Bilder** heißen.
 - **Ein Foto erscheint nicht (nur Initialen, oder es fehlt in der Galerie)?** Dann ist das Foto in Google Drive
   nicht für „Jeder mit dem Link“ freigegeben.
 - **Eine Person fehlt beim Register?** Der Eintrag in der Spalte **Register** muss genau wie im Reiter **Besetzung** geschrieben sein.
