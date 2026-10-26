@@ -9,5 +9,6 @@ export const TABS = {
   concerts: 'Konzerte',
   texts: 'Texte',
   lineup: 'Besetzung',
-  members: 'Mitglieder'
+  members: 'Mitglieder',
+  gallery: 'Galerie'
 }

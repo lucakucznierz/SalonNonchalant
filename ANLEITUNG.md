@@ -63,7 +63,23 @@ So findet man euch leichter, wenn jemand nach „Bigband Leipzig“ oder „Swin
 ## Besetzung ändern
 
 Reiter **Besetzung**: eine Zeile pro Register (z. B. Saxophone).
-Die Spalte **Foto** enthält den Namen eines Fotos (z. B. `img-6675`). Leer lassen, wenn kein Foto gezeigt werden soll.
+Die Spalte **Foto** enthält einen Google-Drive-Link (siehe „Foto hinzufügen“ unten) oder den Namen eines Fotos
+von der Website (z. B. `img-6675`). Leer lassen, wenn kein Foto gezeigt werden soll.
+
+## Galerie ändern
+
+Reiter **Galerie**: eine Zeile pro Foto. Die Reihenfolge der Zeilen ist die Reihenfolge auf der Website,
+jedes fünfte Foto (1., 6., 11. …) wird groß dargestellt – dort am besten ein Querformat-Foto hinsetzen.
+
+| Spalte           | Was hinein gehört                                                  | Beispiel                     |
+|------------------|--------------------------------------------------------------------|------------------------------|
+| Foto             | Google-Drive-Link (siehe „Foto hinzufügen“) oder Name eines Fotos von der Website | `img-6692`        |
+| Beschreibung     | Kurze Bildbeschreibung (für Blinde und Google, erscheint in der Großansicht) | Die Bläser im Kinosaal |
+| Beschreibung_EN  | Dasselbe auf Englisch (optional)                                   | The horns in the cinema      |
+| Beschreibung_FR  | Dasselbe auf Französisch (optional)                                | Les cuivres au cinéma        |
+
+- Foto entfernen: Zeile löschen. Foto verschieben: Zeile ausschneiden und an anderer Stelle einfügen.
+- Die Spalten **Foto** und **Beschreibung** müssen genau so heißen, sonst zeigt die Website die ursprünglichen Fotos.
 
 ## Mitglieder vorstellen
 
@@ -94,9 +110,10 @@ Bitte nur Fotos von Personen verwenden, die mit der Veröffentlichung einverstan
 
 - **Ein Konzert fehlt?** Meist ist das Datum falsch geschrieben. Es muss so aussehen: `05.12.2026`.
 - **Die ganze Seite zeigt nur Beispieltexte?** Dann ist die Tabelle nicht mehr für „Jeder mit dem Link“ freigegeben,
-  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte**, **Besetzung** und **Mitglieder** heißen.
-- **Ein Foto erscheint nicht, nur Initialen?** Dann ist das Foto in Google Drive nicht für „Jeder mit dem Link“ freigegeben.
+  oder ein Reiter wurde umbenannt. Die Reiter müssen genau **Konzerte**, **Texte**, **Besetzung**, **Mitglieder** und **Galerie** heißen.
+- **Ein Foto erscheint nicht (nur Initialen, oder es fehlt in der Galerie)?** Dann ist das Foto in Google Drive
+  nicht für „Jeder mit dem Link“ freigegeben.
 - **Eine Person fehlt beim Register?** Der Eintrag in der Spalte **Register** muss genau wie im Reiter **Besetzung** geschrieben sein.
 - Google speichert einen Versionsverlauf: **Datei → Versionsverlauf** stellt einen früheren Stand wieder her.
 
-Neue Fotos oder Änderungen am Design macht jemand mit Zugriff auf den Code (siehe `README.md`).
+Die großen Fotos oben auf der Seite und Änderungen am Design macht jemand mit Zugriff auf den Code (siehe `README.md`).

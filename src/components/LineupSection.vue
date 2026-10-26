@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, nextTick } from 'vue'
 import { content } from '../services/content'
-import { photoUrl, sheetPhotoUrl } from '../gallery'
+import { sheetPhotoUrl } from '../gallery'
 import { t } from '../i18n'
 
 const openKey = ref(null)
@@ -46,7 +46,7 @@ function memberPhoto(member)
             :aria-controls="panelId(entry.key)"
             @click="toggle(entry.key)"
           >
-            <img v-if="entry.photo" :src="photoUrl(entry.photo, 'small')" alt="" loading="lazy" />
+            <img v-if="entry.photo" :src="sheetPhotoUrl(entry.photo)" alt="" loading="lazy" referrerpolicy="no-referrer" />
             <span class="lineup__body">
               <span class="lineup__name">{{ entry.section }}</span>
               <span class="lineup__instruments">{{ entry.instruments }}</span>

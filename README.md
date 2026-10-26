@@ -12,7 +12,7 @@ Website of the big band Salon Nonchalant. Built with [Vue 3](https://vuejs.org/)
   Sheet columns ending in `_EN` / `_FR` hold translated content. Missing French falls back to English, then German;
   missing English falls back to German.
 - Adding a language: a new `<lang>/index.html`, an entry in `LANGUAGES`, `STRINGS` and `FALLBACK_ORDER` in `src/i18n.js`,
-  a locale in `src/utils/dates.js`, gallery captions in `src/gallery.js`, the Vite `input` list and `public/sitemap.xml`.
+  a locale in `src/utils/dates.js`, the Vite `input` list and `public/sitemap.xml`.
 - Each page has its own title, description, canonical URL, `hreflang` links, Open Graph tags and
   schema.org `MusicGroup` data located in Leipzig. A static text block inside `#app` is readable without JavaScript.
 - Upcoming concerts are published as schema.org `MusicEvent` data at runtime (`src/services/structuredData.js`),
@@ -22,7 +22,7 @@ Website of the big band Salon Nonchalant. Built with [Vue 3](https://vuejs.org/)
 
 ## How content works
 
-All editable content comes from a Google Sheet with four tabs: `Konzerte`, `Texte`, `Besetzung` and `Mitglieder`.
+All editable content comes from a Google Sheet with five tabs: `Konzerte`, `Texte`, `Besetzung`, `Mitglieder` and `Galerie`.
 The browser loads the tabs as CSV directly from Google (`src/services/content.js`), so edits go live without a rebuild.
 
 - The sheet ID is set in `src/config.js` (`SHEET_ID`). The sheet must be shared as "Anyone with the link can view".
@@ -55,7 +55,8 @@ DNS records at Strato (Domainverwaltung → DNS):
 
 The high-resolution originals live in `/Photos`. That folder is ignored by git because it is too large (~650 MB).
 `npm run photos` converts them into web-sized WebP files in `public/photos/` (2000 px and 800 px wide).
-Which photos appear in the gallery, and in what order, is set in `src/gallery.js`.
+The gallery is set in the `Galerie` sheet tab (Google Drive links or names of files in `public/photos`); `public/data/galerie.csv` is the fallback.
+Hero, about and contact photos are fixed in their components.
 
 ## Structure
 
@@ -63,7 +64,7 @@ Which photos appear in the gallery, and in what order, is set in `src/gallery.js
 src/
   App.vue                 page layout, switches to Impressum/Datenschutz via URL hash
   config.js               Google Sheet ID and tab names
-  gallery.js              gallery photo list
+  gallery.js              photo URL helpers (local photos and Google Drive links)
   services/content.js     loads and parses the sheet
   utils/dates.js          date parsing and formatting
   components/             one component per page section

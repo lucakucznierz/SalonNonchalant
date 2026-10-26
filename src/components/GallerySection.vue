@@ -1,12 +1,16 @@
 <script setup>
-import { ref, watch, onBeforeUnmount } from 'vue'
-import { GALLERY_PHOTOS, photoUrl } from '../gallery'
+import { ref, reactive, computed, watch, onBeforeUnmount } from 'vue'
+import { content } from '../services/content'
 import { t } from '../i18n'
 
 const INITIAL_COUNT = 8
 
 const showAll = ref(false)
 const openIndex = ref(null)
+// Photos that fail to load (e.g. a Drive file that is not shared) are left out instead of showing a broken tile.
+const brokenPhotos = reactive(new Set())
+
+const photos = computed(() => content.galleryPhotos.filter(photo => !brokenPhotos.has(photo.small)))
 
 function open(index)
 {
@@ -20,7 +24,7 @@ function close()
 
 function step(direction)
 {
-  const count = GALLERY_PHOTOS.length
+  const count = photos.value.length
   openIndex.value = (openIndex.value + direction + count) % count
 }
 
@@ -55,24 +59,30 @@ onBeforeUnmount(() =>
 </script>
 
 <template>
-  <section id="galerie" class="section">
+  <section v-if="photos.length" id="galerie" class="section">
     <div class="container">
       <p class="eyebrow">{{ t('galleryEyebrow') }}</p>
       <h2>{{ t('gallery') }}</h2>
       <ul class="gallery">
         <li
-          v-for="(photo, index) in GALLERY_PHOTOS"
+          v-for="(photo, index) in photos"
           v-show="showAll || index < INITIAL_COUNT"
-          :key="photo.slug"
+          :key="photo.small"
           class="gallery__item"
           :class="{ 'gallery__item--wide': index % 5 === 0 }"
         >
           <button class="gallery__button" :aria-label="`${t('enlargePhoto')}: ${photo.alt}`" @click="open(index)">
-            <img :src="photoUrl(photo.slug, index % 5 === 0 ? 'large' : 'small')" :alt="photo.alt" loading="lazy" />
+            <img
+              :src="index % 5 === 0 ? photo.large : photo.small"
+              :alt="photo.alt"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              @error="brokenPhotos.add(photo.small)"
+            />
           </button>
         </li>
       </ul>
-      <div v-if="GALLERY_PHOTOS.length > INITIAL_COUNT" class="gallery__more">
+      <div v-if="photos.length > INITIAL_COUNT" class="gallery__more">
         <button class="button button--ghost" @click="showAll = !showAll">
           {{ showAll ? t('showFewerPhotos') : t('showAllPhotos') }}
         </button>
@@ -80,11 +90,11 @@ onBeforeUnmount(() =>
     </div>
 
     <div v-if="openIndex !== null" class="lightbox" role="dialog" aria-modal="true" :aria-label="t('photoView')" @click.self="close">
-      <img :src="photoUrl(GALLERY_PHOTOS[openIndex].slug)" :alt="GALLERY_PHOTOS[openIndex].alt" />
+      <img :src="photos[openIndex].large" :alt="photos[openIndex].alt" referrerpolicy="no-referrer" />
       <button class="lightbox__button lightbox__close" :aria-label="t('close')" @click="close">✕</button>
       <button class="lightbox__button lightbox__prev" :aria-label="t('previousPhoto')" @click="step(-1)">‹</button>
       <button class="lightbox__button lightbox__next" :aria-label="t('nextPhoto')" @click="step(1)">›</button>
-      <p class="lightbox__caption">{{ openIndex + 1 }} / {{ GALLERY_PHOTOS.length }} · {{ GALLERY_PHOTOS[openIndex].alt }}</p>
+      <p class="lightbox__caption">{{ openIndex + 1 }} / {{ photos.length }} · {{ photos[openIndex].alt }}</p>
     </div>
   </section>
 </template>

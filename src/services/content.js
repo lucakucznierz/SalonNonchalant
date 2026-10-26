@@ -3,14 +3,17 @@ import Papa from 'papaparse'
 import { SHEET_ID, TABS } from '../config'
 import { parseDate, formatTime, startOfToday } from '../utils/dates'
 import { localizedColumn } from '../i18n'
+import { sheetPhotoUrl } from '../gallery'
 
-// Per table: bundled example file, a column that must exist, and whether the example file
+// Per table: bundled example file, columns that identify the tab, and whether the example file
 // may stand in for a broken sheet tab (never for members, so no fake people appear on the live site).
+// The column combination must be unique to each tab, because Google answers a missing tab with the first tab.
 const TABLES = {
-  concerts: { file: 'konzerte.csv', requiredColumn: 'Datum', useLocalFallback: true },
-  texts: { file: 'texte.csv', requiredColumn: 'Feld', useLocalFallback: true },
-  lineup: { file: 'besetzung.csv', requiredColumn: 'Register', useLocalFallback: true },
-  members: { file: 'mitglieder.csv', requiredColumn: 'Name', useLocalFallback: false }
+  concerts: { file: 'konzerte.csv', requiredColumns: ['Datum', 'Titel'], useLocalFallback: true },
+  texts: { file: 'texte.csv', requiredColumns: ['Feld', 'Inhalt'], useLocalFallback: true },
+  lineup: { file: 'besetzung.csv', requiredColumns: ['Register', 'Instrumente'], useLocalFallback: true },
+  members: { file: 'mitglieder.csv', requiredColumns: ['Name', 'Register'], useLocalFallback: false },
+  gallery: { file: 'galerie.csv', requiredColumns: ['Foto', 'Beschreibung'], useLocalFallback: true }
 }
 
 /// Shared, reactive site content. Filled once by loadContent().
@@ -19,7 +22,8 @@ export const content = reactive({
   texts: {},
   upcomingConcerts: [],
   pastConcerts: [],
-  lineup: []
+  lineup: [],
+  galleryPhotos: []
 })
 
 function sheetUrl(tabName)
@@ -46,9 +50,9 @@ async function loadTable(key)
     try
     {
       const parsed = await fetchCsv(sheetUrl(TABS[key]))
-      // Google answers a missing tab with the first tab, so check that the expected column is there.
-      if(!parsed.meta.fields?.includes(table.requiredColumn))
-        throw new Error(`column "${table.requiredColumn}" missing`)
+      const missing = table.requiredColumns.filter(column => !parsed.meta.fields?.includes(column))
+      if(missing.length)
+        throw new Error(`columns missing: ${missing.join(', ')}`)
       return parsed.data
     }
     catch(error)
@@ -125,11 +129,22 @@ function toLineup(rows, memberRows)
     .filter(entry => entry.key)
 }
 
+function toGalleryPhotos(rows)
+{
+  return rows
+    .map(row => ({
+      small: sheetPhotoUrl(row.Foto, 'small'),
+      large: sheetPhotoUrl(row.Foto, 'large'),
+      alt: localizedColumn(row, 'Beschreibung') || 'Salon Nonchalant'
+    }))
+    .filter(photo => photo.small)
+}
+
 /// Loads all content tables in parallel and fills the shared content object.
 export async function loadContent()
 {
-  const [textRows, concertRows, lineupRows, memberRows] = await Promise.all(
-    ['texts', 'concerts', 'lineup', 'members'].map(key => loadTable(key).catch(error =>
+  const [textRows, concertRows, lineupRows, memberRows, galleryRows] = await Promise.all(
+    ['texts', 'concerts', 'lineup', 'members', 'gallery'].map(key => loadTable(key).catch(error =>
     {
       console.error(`Content "${key}" could not be loaded.`, error)
       return []
@@ -142,6 +157,7 @@ export async function loadContent()
   content.upcomingConcerts = concerts.filter(c => c.date >= today).sort((a, b) => a.date - b.date)
   content.pastConcerts = concerts.filter(c => c.date < today).sort((a, b) => b.date - a.date)
   content.lineup = toLineup(lineupRows, memberRows)
+  content.galleryPhotos = toGalleryPhotos(galleryRows)
   content.loading = false
 }
 
