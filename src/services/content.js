@@ -167,6 +167,22 @@ export function text(field, fallback = '')
   return content.texts[field] || fallback
 }
 
+// The large section photos, changeable via the rows "bild_oben", "bild_band" and "bild_kontakt" in the Texte tab.
+const PAGE_IMAGE_DEFAULTS = {
+  oben: 'mg-6401-2',
+  band: 'img-6692',
+  kontakt: 'img-6761'
+}
+
+/// URL of a large section photo ("oben", "band" or "kontakt"): the sheet entry if set, otherwise the built-in photo.
+/// Returns null while the content is loading, so a built-in photo does not flash up before the sheet's choice.
+export function pageImage(key, size = 'large')
+{
+  if(content.loading)
+    return null
+  return sheetPhotoUrl(text(`bild_${key}`) || PAGE_IMAGE_DEFAULTS[key], size)
+}
+
 /// Splits a multi-line text into paragraphs (blank line or line break = new paragraph).
 export function paragraphs(field)
 {

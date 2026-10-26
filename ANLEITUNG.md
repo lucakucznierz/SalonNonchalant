@@ -54,6 +54,13 @@ Nur die Spalte **Inhalt** ändern, die Feldnamen bitte nicht umbenennen.
 | email, telefon           | Kontaktknöpfe (leer lassen = Knopf wird ausgeblendet)    |
 | instagram, facebook, youtube | Vollständige Links zu euren Profilen (leer = ausgeblendet) |
 | impressum, datenschutz   | Inhalt der Seiten Impressum und Datenschutz              |
+| bild_oben                | Großes Foto ganz oben (Google-Drive-Link oder Name eines Website-Fotos) |
+| bild_band                | Foto neben dem Band-Text                                 |
+| bild_kontakt             | Hintergrundfoto im Booking-Bereich                       |
+
+**Fotos oben und im Booking-Bereich:** Hier unbedingt **Querformat-Fotos** nehmen – sie füllen die ganze Breite,
+Hochformat-Fotos werden stark beschnitten. Bleibt eine bild_-Zeile leer oder fehlt sie, zeigt die Website das bisherige Foto.
+Fotos aus Google Drive einfügen wie unter „Foto hinzufügen“ beschrieben.
 
 **Neuer Absatz:** In einer Zelle mit **Strg + Enter** (Mac: **Cmd + Enter**) eine neue Zeile beginnen.
 
@@ -116,4 +123,4 @@ Bitte nur Fotos von Personen verwenden, die mit der Veröffentlichung einverstan
 - **Eine Person fehlt beim Register?** Der Eintrag in der Spalte **Register** muss genau wie im Reiter **Besetzung** geschrieben sein.
 - Google speichert einen Versionsverlauf: **Datei → Versionsverlauf** stellt einen früheren Stand wieder her.
 
-Die großen Fotos oben auf der Seite und Änderungen am Design macht jemand mit Zugriff auf den Code (siehe `README.md`).
+Änderungen am Design macht jemand mit Zugriff auf den Code (siehe `README.md`).

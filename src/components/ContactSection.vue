@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { text, paragraphs } from '../services/content'
-import { photoUrl } from '../gallery'
+import { text, paragraphs, pageImage } from '../services/content'
 import { t } from '../i18n'
 
 const socialLinks = computed(() => [
@@ -13,7 +12,7 @@ const socialLinks = computed(() => [
 
 <template>
   <section id="kontakt" class="contact">
-    <img class="contact__image" :src="photoUrl('img-6761')" alt="" loading="lazy" />
+    <img v-if="pageImage('kontakt')" class="contact__image" :src="pageImage('kontakt')" alt="" loading="lazy" referrerpolicy="no-referrer" />
     <div class="container contact__inner">
       <p class="eyebrow">{{ t('contactEyebrow') }}</p>
       <h2>{{ text('buchen_titel', t('contactFallback')) }}</h2>

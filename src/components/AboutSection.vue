@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { text, paragraphs } from '../services/content'
-import { photoUrl } from '../gallery'
+import { text, paragraphs, pageImage } from '../services/content'
 import { t } from '../i18n'
 import LineupSection from './LineupSection.vue'
 
@@ -25,7 +24,7 @@ const facts = computed(() => [1, 2, 3]
         </dl>
       </div>
       <figure class="about__image">
-        <img :src="photoUrl('img-6692')" :alt="t('aboutAlt')" loading="lazy" />
+        <img v-if="pageImage('band')" :src="pageImage('band')" :alt="t('aboutAlt')" loading="lazy" referrerpolicy="no-referrer" />
       </figure>
     </div>
 
@@ -44,14 +43,19 @@ const facts = computed(() => [1, 2, 3]
   color: var(--muted);
   font-size: 1.1rem;
 }
+/* The frame keeps its size while the photo loads, so the text next to it does not jump. */
 .about__image {
   margin: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
 }
 .about__image img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius);
 }
 .about__facts {
   display: grid;
@@ -77,7 +81,7 @@ const facts = computed(() => [1, 2, 3]
   .about {
     grid-template-columns: 1fr;
   }
-  .about__image img {
+  .about__image {
     aspect-ratio: 4 / 3;
   }
 }

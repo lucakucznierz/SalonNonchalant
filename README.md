@@ -56,7 +56,7 @@ DNS records at Strato (Domainverwaltung → DNS):
 The high-resolution originals live in `/Photos`. That folder is ignored by git because it is too large (~650 MB).
 `npm run photos` converts them into web-sized WebP files in `public/photos/` (2000 px and 800 px wide).
 The gallery is set in the `Galerie` sheet tab (Google Drive links or names of files in `public/photos`); `public/data/galerie.csv` is the fallback.
-Hero, about and contact photos are fixed in their components.
+Hero, about and contact photos come from the `bild_oben`, `bild_band` and `bild_kontakt` rows of the `Texte` tab (`pageImage()` in `src/services/content.js`), with built-in defaults.
 
 ## Structure
 

@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { content, text } from '../services/content'
-import { photoUrl } from '../gallery'
+import { content, text, pageImage } from '../services/content'
 import { formatLongDate } from '../utils/dates'
 import { t } from '../i18n'
 
@@ -11,12 +10,14 @@ const nextConcert = computed(() => content.upcomingConcerts[0])
 <template>
   <section id="top" class="hero">
     <img
+      v-if="pageImage('oben')"
       class="hero__image"
-      :src="photoUrl('mg-6401-2')"
-      :srcset="`${photoUrl('mg-6401-2', 'small')} 800w, ${photoUrl('mg-6401-2')} 2000w`"
+      :src="pageImage('oben')"
+      :srcset="`${pageImage('oben', 'small')} 800w, ${pageImage('oben')} 2000w`"
       sizes="100vw"
       :alt="t('heroAlt')"
       fetchpriority="high"
+      referrerpolicy="no-referrer"
     />
     <div class="hero__content container">
       <p class="eyebrow">{{ text('hero_zeile', t('heroFallback')) }}</p>
@@ -52,6 +53,12 @@ const nextConcert = computed(() => content.upcomingConcerts[0])
   object-fit: cover;
   object-position: 50% 35%;
   z-index: -2;
+  animation: fade-in 0.6s ease-out;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 .hero::before {
   content: '';
